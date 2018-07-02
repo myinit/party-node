@@ -36,7 +36,7 @@ class UserLoginController extends Controller {
     // console.log(ctx.request.body);
     // 调用 service 处理
     const code = ctx.request.body.code;
-    const openId = await service.wxHelp.getOpenIdByCode(code);
+    const openId = await service.wx.getOpenIdByCode(code);
     //  curl("https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code")
 
     const id = await service.userLoginInfo.userLogin(openId);

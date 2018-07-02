@@ -16,6 +16,11 @@ class WxService extends Service {
             accessToken: "",
             expiresIn: 1555555343
         }
+        this.userInfo = {
+            openid: "",
+            session_key: "",
+            unionid: ""
+        }
     }
 
     async create(params) {
@@ -42,7 +47,22 @@ class WxService extends Service {
             this.ctx.throw(500, 'remote response error', { data: result.data });
         }
     }
-
+    
+    async getOpenIdByCode(code){
+        urlcode = "https://api.weixin.qq.com/sns/jscode2session?appid="+ this.appconf.appid + "&secret="+ this.appconf.secret+"&js_code="+code+"&grant_type=authorization_code"
+        return await http({
+            url: urlcode,
+            method: 'GET'
+        }).then(res => {
+            console.log(res.data)
+            
+            this.userInfo.openid = res.data.openid
+            this.userInfo.session_key = res.data.session_key
+            this.userInfo.unionid = res.data.unionid || ""
+            return res.data.openid
+        })
+    }
+    
     async getAccessToken() {
         const now = new Date().getTime()
         if (this.wxAccessToken.expiresIn > now && this.wxAccessToken.accessToken != "") {
