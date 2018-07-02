@@ -1,0 +1,14 @@
+'use strict';
+
+/**
+ * @param {Egg.Application} app - egg application
+ */
+module.exports = app => {
+  const { router, controller } = app;
+  router.get('/', controller.home.index);
+
+  router.resources('party', '/party', app.controller.party);
+  router.resources('user', '/user', app.controller.user);
+  router.resources('wxmessage', '/wxmessage', app.controller.wxmessage);
+  router.resources('userLogin', '/user-login', app.controller.userLogin);
+};

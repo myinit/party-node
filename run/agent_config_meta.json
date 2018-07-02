@@ -1,0 +1,268 @@
+{
+  "keys": "/home/pantuo/party/config/config.default.js",
+  "middleware": "/home/pantuo/party/config/config.default.js",
+  "security": {
+    "csrf": {
+      "enable": "/home/pantuo/party/config/config.default.js",
+      "useSession": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "ignoreJSON": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "cookieName": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "sessionName": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "headerName": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "bodyName": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "queryName": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "domainWhiteList": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+    "protocolWhiteList": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+    "defaultMiddleware": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+    "xframe": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "value": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "hsts": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "maxAge": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "includeSubdomains": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "dta": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "methodnoallow": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "noopen": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "nosniff": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "referrerPolicy": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "value": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "xssProtection": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "value": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "csp": {
+      "enable": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "policy": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    },
+    "ssrf": {
+      "ipBlackList": "/home/pantuo/party/node_modules/egg-security/config/config.default.js",
+      "checkAddress": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+    }
+  },
+  "session": {
+    "maxAge": "/home/pantuo/party/node_modules/egg-session/config/config.default.js",
+    "key": "/home/pantuo/party/node_modules/egg-session/config/config.default.js",
+    "httpOnly": "/home/pantuo/party/node_modules/egg-session/config/config.default.js",
+    "encrypt": "/home/pantuo/party/node_modules/egg-session/config/config.default.js"
+  },
+  "helper": {
+    "shtml": "/home/pantuo/party/node_modules/egg-security/config/config.default.js"
+  },
+  "jsonp": {
+    "limit": "/home/pantuo/party/node_modules/egg-jsonp/config/config.default.js",
+    "callback": "/home/pantuo/party/node_modules/egg-jsonp/config/config.default.js",
+    "csrf": "/home/pantuo/party/node_modules/egg-jsonp/config/config.default.js"
+  },
+  "onerror": {
+    "errorPageUrl": "/home/pantuo/party/node_modules/egg-onerror/config/config.default.js",
+    "appErrorFilter": "/home/pantuo/party/node_modules/egg-onerror/config/config.default.js",
+    "templatePath": "/home/pantuo/party/node_modules/egg-onerror/config/config.default.js"
+  },
+  "i18n": {
+    "defaultLocale": "/home/pantuo/party/node_modules/egg-i18n/config/config.default.js",
+    "dirs": "/home/pantuo/party/node_modules/egg-i18n/config/config.default.js",
+    "queryField": "/home/pantuo/party/node_modules/egg-i18n/config/config.default.js",
+    "cookieField": "/home/pantuo/party/node_modules/egg-i18n/config/config.default.js",
+    "cookieMaxAge": "/home/pantuo/party/node_modules/egg-i18n/config/config.default.js"
+  },
+  "watcher": {
+    "type": "/home/pantuo/party/node_modules/egg-watcher/config/config.default.js",
+    "eventSources": {
+      "default": "/home/pantuo/party/node_modules/egg-watcher/config/config.default.js",
+      "development": "/home/pantuo/party/node_modules/egg-watcher/config/config.default.js"
+    }
+  },
+  "multipart": {
+    "autoFields": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "defaultCharset": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "fieldNameSize": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "fieldSize": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "fields": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "fileSize": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "files": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "fileExtensions": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js",
+    "whitelist": "/home/pantuo/party/node_modules/egg-multipart/config/config.default.js"
+  },
+  "customLogger": {
+    "scheduleLogger": {
+      "consoleLevel": "/home/pantuo/party/node_modules/egg-schedule/config/config.default.js",
+      "file": "/home/pantuo/party/node_modules/egg-schedule/config/config.default.js"
+    }
+  },
+  "logrotator": {
+    "filesRotateByHour": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js",
+    "hourDelimiter": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js",
+    "filesRotateBySize": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js",
+    "maxFileSize": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js",
+    "maxFiles": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js",
+    "rotateDuration": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js",
+    "maxDays": "/home/pantuo/party/node_modules/egg-logrotator/config/config.default.js"
+  },
+  "static": {
+    "prefix": "/home/pantuo/party/node_modules/egg-static/config/config.default.js",
+    "dir": "/home/pantuo/party/node_modules/egg-static/config/config.default.js",
+    "dynamic": "/home/pantuo/party/node_modules/egg-static/config/config.default.js",
+    "preload": "/home/pantuo/party/node_modules/egg-static/config/config.default.js",
+    "buffer": "/home/pantuo/party/node_modules/egg-static/config/config.prod.js",
+    "maxFiles": "/home/pantuo/party/node_modules/egg-static/config/config.default.js",
+    "maxAge": "/home/pantuo/party/node_modules/egg-static/config/config.prod.js"
+  },
+  "view": {
+    "root": "/home/pantuo/party/node_modules/egg-view/config/config.default.js",
+    "cache": "/home/pantuo/party/node_modules/egg-view/config/config.default.js",
+    "defaultExtension": "/home/pantuo/party/node_modules/egg-view/config/config.default.js",
+    "defaultViewEngine": "/home/pantuo/party/node_modules/egg-view/config/config.default.js",
+    "mapping": "/home/pantuo/party/node_modules/egg-view/config/config.default.js"
+  },
+  "env": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "name": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "proxy": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "protocolHeaders": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "ipHeaders": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "hostHeaders": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "pkg": {
+    "name": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "version": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "description": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "private": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "dependencies": {
+      "axios": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "egg": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "egg-scripts": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "egg-validate": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "devDependencies": {
+      "autod": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "autod-egg": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "egg-bin": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "egg-ci": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "egg-mock": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "eslint": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "eslint-config-egg": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "webstorm-disable-index": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "engines": {
+      "node": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "scripts": {
+      "start": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "stop": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "dev": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "debug": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "test": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "test-local": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "cov": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "lint": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "ci": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "autod": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "ci": {
+      "version": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "repository": {
+      "type": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "url": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "author": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "license": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "baseDir": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "HOME": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "rundir": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "dump": {
+    "ignore": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "confusedConfigurations": {
+    "bodyparser": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "notFound": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "sitefile": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "middlewares": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "httpClient": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "notfound": {
+    "pageUrl": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "siteFile": {
+    "/favicon.ico": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "bodyParser": {
+    "enable": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "encoding": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "formLimit": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "jsonLimit": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "strict": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "queryString": {
+      "arrayLimit": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "depth": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "parameterLimit": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    }
+  },
+  "logger": {
+    "dir": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "encoding": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "env": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "level": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "consoleLevel": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "disableConsoleAfterReady": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "outputJSON": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "buffer": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "appLogName": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "coreLogName": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "agentLogName": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "errorLogName": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "coreLogger": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "allowDebugAtProd": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "httpclient": {
+    "enableDNSCache": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "dnsCacheMaxLength": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "dnsCacheMaxAge": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "request": {
+      "timeout": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "httpAgent": {
+      "keepAlive": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "freeSocketKeepAliveTimeout": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "maxSockets": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    },
+    "httpsAgent": {
+      "keepAlive": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "freeSocketKeepAliveTimeout": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "maxSockets": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    }
+  },
+  "meta": {
+    "enable": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "logging": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "coreMiddleware": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "workerStartTimeout": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+  "cluster": {
+    "listen": {
+      "path": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "port": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+      "hostname": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+    }
+  },
+  "clusterClient": {
+    "maxWaitTime": "/home/pantuo/party/node_modules/egg/config/config.default.js",
+    "responseTimeout": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+  },
+  "onClientError": "/home/pantuo/party/node_modules/egg/config/config.default.js"
+}
