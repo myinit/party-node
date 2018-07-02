@@ -9,8 +9,8 @@ class WxService extends Service {
         super(ctx);
         this.root = 'https://cnodejs.org/api/v1';
         this.appconf = {
-            appid: "wx0e7719b0d733672d",
-            secret: "44d32301756871c2b388934f91e5f46a"
+            appid: "",
+            secret: ""
         }
         this.wxAccessToken = {
             accessToken: "",
