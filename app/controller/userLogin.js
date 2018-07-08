@@ -10,7 +10,7 @@ class UserLoginController extends Controller {
 
   async show() {
     const { ctx, service } = this;
-    const userLoginInfo = await service.userLoginInfo.getUserLoginLoginInfo(ctx.query.id, ctx.query.open_id);
+    const userLoginInfo = await service.userLoginInfo.getUserLoginInfo(ctx.query.id, ctx.query.open_id);
 
     // const userLoginInfo = await service.userLogin.findUserLoginByOpenId(ctx.params.id);
     // const userLoginInfo = await service.userLoginInfo.userLoginLogin(ctx.params.id);

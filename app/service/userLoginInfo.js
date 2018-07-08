@@ -37,6 +37,7 @@ class userLoginInfoService extends Service {
   }
 
   async userLogin(openid) {
+    
     if (!openid) {
       return;
     }

@@ -49,6 +49,7 @@ class WxService extends Service {
     }
     
     async getOpenIdByCode(code){
+       
         urlcode = "https://api.weixin.qq.com/sns/jscode2session?appid="+ this.appconf.appid + "&secret="+ this.appconf.secret+"&js_code="+code+"&grant_type=authorization_code"
         return await http({
             url: urlcode,
@@ -64,6 +65,9 @@ class WxService extends Service {
     }
     
     async getAccessToken() {
+        const {app} = this
+        this.wxAccessToken = await app.redis.get('wx_access_token');
+        
         const now = new Date().getTime()
         if (this.wxAccessToken.expiresIn > now && this.wxAccessToken.accessToken != "") {
             return this.wxAccessToken.accessToken
@@ -76,8 +80,10 @@ class WxService extends Service {
             method: 'GET'
         }).then(res => {
             console.log(res.data)
+
             this.wxAccessToken.accessToken = res.data.access_token
             this.wxAccessToken.expiresIn = now + res.data.expires_in * 1000
+            await app.redis.set('wx_access_token', this.wxAccessToken);
             return this.wxAccessToken.accessToken
         })
     }
