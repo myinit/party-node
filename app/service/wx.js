@@ -8,10 +8,7 @@ class WxService extends Service {
     constructor(ctx) {
         super(ctx);
         this.root = 'https://cnodejs.org/api/v1';
-        this.appconf = {
-            appid: "",
-            secret: ""
-        }
+        this.appconf = this.config.appconf
         this.wxAccessToken = {
             accessToken: "",
             expiresIn: 1555555343
@@ -49,8 +46,7 @@ class WxService extends Service {
     }
     
     async getOpenIdByCode(code){
-       
-        urlcode = "https://api.weixin.qq.com/sns/jscode2session?appid="+ this.appconf.appid + "&secret="+ this.appconf.secret+"&js_code="+code+"&grant_type=authorization_code"
+        const urlcode = "https://api.weixin.qq.com/sns/jscode2session?appid="+ this.appconf.appid + "&secret="+ this.appconf.secret+"&js_code="+code+"&grant_type=authorization_code"
         return await http({
             url: urlcode,
             method: 'GET'
@@ -83,10 +79,20 @@ class WxService extends Service {
 
             this.wxAccessToken.accessToken = res.data.access_token
             this.wxAccessToken.expiresIn = now + res.data.expires_in * 1000
-            await app.redis.set('wx_access_token', this.wxAccessToken);
+            app.redis.set('wx_access_token', this.wxAccessToken)
             return this.wxAccessToken.accessToken
         })
     }
+
+//     async wxDecryptData() {
+//         const  {WXBizDataCrypt} = this
+//         WXBizDataCrypt(this.appconf.appid, this.userInfo.session_key)
+//         var pc = new WXBizDataCrypt(appId, sessionKey)
+
+// var data = pc.decryptData(encryptedData , iv)
+
+// console.log('解密后 data: ', data)
+//     }
 }
 
 module.exports = WxService;

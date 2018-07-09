@@ -33,7 +33,7 @@ class UserService extends Service {
   }
 
   async create(request) {
-    if (!request) {
+    if (!request || !request.openId) {
       return;
     }
     // 获取自增id
@@ -42,10 +42,13 @@ class UserService extends Service {
     // console.log(doc);
     // console.log('+++++++docv+++++');
     // request.open_id = doc.open_id;
-
-    const result = await this.ctx.model.User.create(request);
+    let result = this.findUserByOpenId(opendId)
+    if (!result) {
+      result = await this.ctx.model.User.create(request);      
+    }
     return result;
   }
+  
   async findUserByOpenId(opendId) {
     if (!opendId) {
       return;

@@ -48,7 +48,7 @@ class userLoginInfoService extends Service {
     }
     const now = new Date().getTime() + 87600000;
     const result = await this.ctx.model.UserLoginInfo.create({ open_id: openid, expired: now, user_info: userInfo });
-    return result._id;
+    return result;
   }
 }
 

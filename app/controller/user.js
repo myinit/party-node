@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const CommonController = require('./common.js');
 
-class UserController extends Controller {
+  class UserController extends CommonController {
   async index() {
     const { ctx } = this;
     ctx.body = 'hi, egg party';
@@ -26,22 +26,25 @@ class UserController extends Controller {
 
   async create() {
     const { ctx, service } = this;
-
-    // 校验参数
-    // const createRule = {
-    //   userId: 'string',
-    //   content: 'string',
-    // };
-    // ctx.validate(createRule);
-    // console.log(ctx.request.body);
-    // 调用 service 处理
-    const id = await service.user.create(ctx.request.body);
-
+    const code = ctx.request.body.code;
+    const openId = await service.wx.getOpenIdByCode(code);
+    if (!openId) {
+      return this.returnFailJson('USER_CODE_INVALID')
+    }
+    const addUser = {
+      open_id:openId,
+      wxuser_info:ctx.request.body.user_info
+    }
+    const createInfo = await service.user.create(addUser)
+    if (!createInfo) {
+      return this.returnFailJson('USER_CREATE_FAIL')      
+    }
+    let retData = {}
+    if(ctx.request.body.need_login == 'y'){
+      return this.userLogin(userInfo)
+    }
     // 设置响应体和状态码
-    ctx.body = {
-      party_id: id,
-    };
-    ctx.status = 201;
+    return this.returnSuccessJson(createInfo)
   }
 }
 

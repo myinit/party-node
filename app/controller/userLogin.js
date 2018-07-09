@@ -1,32 +1,25 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const CommonController = require('./common.js');
 
-class UserLoginController extends Controller {
+class UserLoginController extends CommonController {
   async index() {
     const { ctx } = this;
     ctx.body = 'hi, egg party';
   }
 
   async show() {
-    const { ctx, service } = this;
-    const userLoginInfo = await service.userLoginInfo.getUserLoginInfo(ctx.query.id, ctx.query.open_id);
-
-    // const userLoginInfo = await service.userLogin.findUserLoginByOpenId(ctx.params.id);
-    // const userLoginInfo = await service.userLoginInfo.userLoginLogin(ctx.params.id);
-
-    // 设置响应体和状态码
-    // if (userLoginInfo) {
-    ctx.body = {
-      userLogin_info: userLoginInfo,
-    };
-    // }
-    ctx.status = 200;
+    const { ctx } = this;
+    const info = await this.userIsLogin(ctx.params.id)
+    if (!info) {
+      return this.returnFailJson('USER_NOT_LOGIN')
+    }
+    return this.returnSuccessJson(info)
   }
 
   async create() {
     const { ctx, service } = this;
-
+  
     // 校验参数
     // const createRule = {
     //   userLoginId: 'string',
@@ -38,14 +31,15 @@ class UserLoginController extends Controller {
     const code = ctx.request.body.code;
     const openId = await service.wx.getOpenIdByCode(code);
     //  curl("https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code")
+    if (!openId) {
+      return this.returnFailJson('USER_CODE_INVALID')
+    }
 
-    const id = await service.userLoginInfo.userLogin(openId);
-
-    // 设置响应体和状态码
-    ctx.body = {
-      party_id: id,
-    };
-    ctx.status = 201;
+    const userInfo = await service.user.findUserByOpenId(openId);
+    if (!userInfo) {
+      return this.returnFailJson('USER_NOT_FIND')
+    }
+    return this.userLogin(userInfo)
   }
 }
 
