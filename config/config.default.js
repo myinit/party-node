@@ -29,7 +29,12 @@ module.exports = appInfo => {
       password: '',
       db: 0,
     },
+  },
+  config.appconf = {
+    appid: "",
+    secret: ""
   }
+
 
   return config
 }
