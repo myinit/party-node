@@ -1,16 +1,16 @@
-'use strict';
+'use strict'
 
-const CommonController = require('./common.js');
+const CommonController = require('../core/commonController.js')
 
-  class UserController extends CommonController {
+class UserController extends CommonController {
   async index() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg party';
+    const { ctx } = this
+    ctx.body = 'hi, egg party'
   }
 
   async show() {
-    const { ctx, service } = this;
-    const userInfo = await service.userLoginInfo.getUserLoginInfo(ctx.query.id, ctx.query.open_id);
+    const { ctx, service } = this
+    const userInfo = await service.userLoginInfo.getUserLoginInfo(ctx.query.id, ctx.query.open_id)
 
     // const userInfo = await service.user.findUserByOpenId(ctx.params.id);
     // const userInfo = await service.userLoginInfo.userLogin(ctx.params.id);
@@ -18,29 +18,29 @@ const CommonController = require('./common.js');
     // 设置响应体和状态码
     // if (userInfo) {
     ctx.body = {
-      user_info: userInfo,
-    };
+      user_info: userInfo
+    }
     // }
-    ctx.status = 200;
+    ctx.status = 200
   }
 
   async create() {
-    const { ctx, service } = this;
-    const code = ctx.request.body.code;
-    const openId = await service.wx.getOpenIdByCode(code);
+    const { ctx, service } = this
+    const code = ctx.request.body.code
+    const openId = await service.wx.getOpenIdByCode(code)
     if (!openId) {
       return this.returnFailJson('USER_CODE_INVALID')
     }
     const addUser = {
-      open_id:openId,
-      wxuser_info:ctx.request.body.user_info
+      open_id: openId,
+      wxuser_info: ctx.request.body.user_info
     }
     const createInfo = await service.user.create(addUser)
     if (!createInfo) {
-      return this.returnFailJson('USER_CREATE_FAIL')      
+      return this.returnFailJson('USER_CREATE_FAIL')
     }
     let retData = {}
-    if(ctx.request.body.need_login == 'y'){
+    if (ctx.request.body.need_login == 'y') {
       return this.userLogin(userInfo)
     }
     // 设置响应体和状态码
@@ -48,4 +48,4 @@ const CommonController = require('./common.js');
   }
 }
 
-module.exports = UserController;
+module.exports = UserController

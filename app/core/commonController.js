@@ -1,5 +1,5 @@
 
-const BaseController = require('./base.js');
+const BaseController = require('./baseController.js');
 
 class CommonController extends BaseController {
     constructor(ctx) {

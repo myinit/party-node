@@ -1,6 +1,6 @@
 'use strict';
 
-const CommonController = require('./common.js');
+const CommonController = require('../core/commonController.js');
 
 class UserLoginController extends CommonController {
   async index() {

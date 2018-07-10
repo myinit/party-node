@@ -9,7 +9,7 @@ module.exports = appInfo => {
   // add your config here
   // 全局中间件
   // 拦截所有请求
-  config.middleware = ['parseToken']
+  config.middleware = ['parseToken', 'auth']
   config.parseToken = {
     demo: 'demo'
   }
@@ -34,6 +34,7 @@ module.exports = appInfo => {
       password: '',
       db: 0,
     },
+    agent:true
   },
   config.appconf = {
     appid: "",
