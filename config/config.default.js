@@ -7,7 +7,12 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1529917542330_2227'
 
   // add your config here
-  config.middleware = []
+  // 全局中间件
+  // 拦截所有请求
+  config.middleware = ['parseToken']
+  config.parseToken = {
+    demo: 'demo'
+  }
 
   config.security = {
     csrf: { enable: false }

@@ -18,7 +18,7 @@ npm-debug.log
 coverage/
 run/
 *.swp
-config/
+# config/
 
 #other
 .eslintcache
