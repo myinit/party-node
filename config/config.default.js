@@ -17,6 +17,13 @@ module.exports = appInfo => {
   config.security = {
     csrf: { enable: false }
   }
+
+  config.userinfo = {
+    uid: '',
+    openId: '',
+    loginToken: '',
+    wxuserInfo: ''
+  }
   // config.cors = {
   //   credentials: true,
   // };

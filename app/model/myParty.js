@@ -10,7 +10,7 @@ module.exports = app => {
   //   "status"=>"状态1启用2删除",
   //   "regdate"=>"添加时间",
   // ];
-  const NewsSchema = new app.mongoose.Schema({
+  const MyParty = new app.mongoose.Schema({
     // spid: { type: Number  , unique: true  },
     uid: { type: String  },
     title: { type: String  },
@@ -20,5 +20,5 @@ module.exports = app => {
     regdate: { type: Date , default: Date.now }
   });
 
-  return app.mongoose.model('UserSelfParty', NewsSchema);
+  return app.mongoose.model('MyParty', MyParty);
 }

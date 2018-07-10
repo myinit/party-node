@@ -8,6 +8,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
 
   router.resources('party', '/party', app.controller.party);
+  router.resources('myParty', '/my-party', app.controller.myParty);
   router.resources('user', '/user', app.controller.user);
   router.resources('test', '/test', app.controller.test);
   router.resources('wxmessage', '/wxmessage', app.controller.wxmessage);

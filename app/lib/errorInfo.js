@@ -9,7 +9,8 @@ errorInfo = {
     USER_NOT_FIND:[3002,'没有找到用户'],
     USER_CODE_INVALID:[3003,'无效的code没有解出来openid'],
     USER_NOT_LOGIN:[3004,'用户未登录'],
-    ACTIVITY_ERROR:[4000, '活动异常']
+    ACTIVITY_ERROR:[4000, '活动异常'],
+    PART_DATA_ERROR:[4001, '更新书签数据异常']
 }
 
 module.exports = errorInfo;
