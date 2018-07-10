@@ -1,13 +1,13 @@
 'use strict';
 
-const CommonController = require('./common.js');
+const CommonController = require('../core/commonController.js');
 
 class TestController extends CommonController {
   async index() {
-    return this.returnSuccessJson("成功")
+    return this.success("成功")
   }
   async show() {
-    return this.returnFailJson("失败")
+    return this.fail("失败")
   }
 }
 

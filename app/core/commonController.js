@@ -7,20 +7,12 @@ class CommonController extends BaseController {
     }
     async userLogin(userInfo){
         if(!userInfo || !userInfo.open_id){
-            return this.returnFailJson('USER_LOGIN_FAIL')
+            return this.fail('USER_LOGIN_FAIL')
         }
         const {app} = this
         const loginToken = userInfo.open_id
         await app.redis.set(loginToken, userInfo);
-        return this.returnSuccessJson({user_info:userInfo,login_token:loginToken})
-    }
-   
-    async userIsLogin(loginToken){
-        const info = await this.app.redis.get(loginToken)
-        if (!info) {
-            return false
-        }
-        return info
+        return this.success({user_info:userInfo,login_token:loginToken})
     }
 
 }

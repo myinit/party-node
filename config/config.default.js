@@ -33,8 +33,7 @@ module.exports = appInfo => {
       host: '127.0.0.1',   // Redis host
       password: '',
       db: 0,
-    },
-    agent:true
+    }
   },
   config.appconf = {
     appid: "",

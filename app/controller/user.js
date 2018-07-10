@@ -29,7 +29,7 @@ class UserController extends CommonController {
     const code = ctx.request.body.code
     const openId = await service.wx.getOpenIdByCode(code)
     if (!openId) {
-      return this.returnFailJson('USER_CODE_INVALID')
+      return this.fail('USER_CODE_INVALID')
     }
     const addUser = {
       open_id: openId,
@@ -37,15 +37,16 @@ class UserController extends CommonController {
     }
     const createInfo = await service.user.create(addUser)
     if (!createInfo) {
-      return this.returnFailJson('USER_CREATE_FAIL')
+      return this.fail('USER_CREATE_FAIL')
     }
     let retData = {}
     if (ctx.request.body.need_login == 'y') {
       return this.userLogin(userInfo)
     }
     // 设置响应体和状态码
-    return this.returnSuccessJson(createInfo)
-  }
+    return this.success(createInfo)
+  }  
+
 }
 
 module.exports = UserController

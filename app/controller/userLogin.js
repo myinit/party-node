@@ -9,12 +9,13 @@ class UserLoginController extends CommonController {
   }
 
   async show() {
-    const { ctx } = this;
-    const info = await this.userIsLogin(ctx.params.id)
-    if (!info) {
-      return this.returnFailJson('USER_NOT_LOGIN')
+    const { ctx, service } = this;
+    const info = await service.userLogin.findOne(ctx.params.id)
+    if(info){
+      return this.success(info)
+    }else{
+      return this.fail('USER_NOT_FIND')
     }
-    return this.returnSuccessJson(info)
   }
 
   async create() {
@@ -32,13 +33,14 @@ class UserLoginController extends CommonController {
     const openId = await service.wx.getOpenIdByCode(code);
     //  curl("https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code")
     if (!openId) {
-      return this.returnFailJson('USER_CODE_INVALID')
+      return this.fail('USER_CODE_INVALID')
     }
 
     const userInfo = await service.user.findUserByOpenId(openId);
     if (!userInfo) {
-      return this.returnFailJson('USER_NOT_FIND')
+      return this.fail('USER_NOT_FIND')
     }
+    
     return this.userLogin(userInfo)
   }
 }

@@ -1,5 +1,5 @@
 'use strict';
-
+const errorInfo = require('../lib/errorInfo.js')
 /**
  * 判断是否登录
  * @param {Object} options 中间件的配置项
@@ -11,19 +11,21 @@ module.exports = (options, app) => {
   return async function auth(ctx, next) {
     await next();
 
-    const sessionid = ctx.get('sessionid');
-    const session = await app.redis.get(sessionid);
+    let loginToken = ctx.get('logintoken');
+    let info = await app.redis.get(loginToken)
+    let err = errorInfo['USER_NOT_LOGIN']
 
     // 过滤登录接口
-    if (ctx.path === '/login') {
+    if (ctx.path === '/user-login') {
       return;
     }
 
-    // 判断是否有session
-    if (!session) {
+    // 判断是否有info
+    if (!info) {
       ctx.body = {
-        errorCode: 100,
-        message: '尚未登录',
+        data: '',
+        info: err[1],
+        code: err[0]
       };
     }
   };

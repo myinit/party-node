@@ -8,6 +8,7 @@ errorInfo = {
     USER_LOGIN_FAIL:[3001,'用户登录失败'],
     USER_NOT_FIND:[3002,'没有找到用户'],
     USER_CODE_INVALID:[3003,'无效的code没有解出来openid'],
+    USER_NOT_LOGIN:[3004,'用户未登录'],
     ACTIVITY_ERROR:[4000, '活动异常']
 }
 
