@@ -11,7 +11,6 @@ class UserController extends CommonController {
   async show() {
     const { ctx, service } = this
     const userInfo = await service.userLoginInfo.getUserLoginInfo(ctx.query.id, ctx.query.open_id)
-
     // const userInfo = await service.user.findUserByOpenId(ctx.params.id);
     // const userInfo = await service.userLoginInfo.userLogin(ctx.params.id);
 
@@ -33,7 +32,7 @@ class UserController extends CommonController {
     }
     const addUser = {
       open_id: openId,
-      wxuser_info: ctx.request.body.user_info
+      wxuser_info: ctx.request.body.wxuser_info
     }
     const createInfo = await service.user.create(addUser)
     if (!createInfo) {
