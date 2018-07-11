@@ -28,6 +28,7 @@ module.exports = appInfo => {
   //   credentials: true,
   // };
 
+  config.authRouterWhiteList = ['/user','/user-login']
   
   config.mongoose = {
     url: 'mongodb://127.0.0.1/party',

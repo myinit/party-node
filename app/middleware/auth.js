@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const errorInfo = require('../lib/errorInfo.js')
 /**
  * 判断是否登录
@@ -9,24 +9,25 @@ const errorInfo = require('../lib/errorInfo.js')
  */
 module.exports = (options, app) => {
   return async function auth(ctx, next) {
-    let loginToken = ctx.get('logintoken');
+    let loginToken = ctx.get('logintoken')
     let info = await app.redis.get(loginToken)
     info = JSON.parse(info)
     let err = errorInfo['USER_NOT_LOGIN']
-    
-    // 过滤登录接口
-    if (ctx.path !== '/user-login') {
+
+    // 过滤白名单接口
+    let routerIsInWhiteList = app.config.authRouterWhiteList.indexOf(ctx.path) > -1
+    if (!routerIsInWhiteList) {
       if (!info) {
         // 判断是否有info
         ctx.body = {
           data: '',
           info: err[1],
           code: err[0]
-        };
-        return;
+        }
+        return
       }
+      app.config.userinfo.uid = info._id
     }
-    app.config.userinfo.uid = info._id
-    await next();
-  };
-};
+    await next()
+  }
+}
