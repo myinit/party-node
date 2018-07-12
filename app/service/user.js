@@ -42,18 +42,18 @@ class UserService extends Service {
     // console.log(doc);
     // console.log('+++++++docv+++++');
     // request.open_id = doc.open_id;
-    let result =  await this.findUserByOpenId(request.opend_id)
+    let result =  await this.findUserByOpenId(request.open_id)
     if (!result) {
       result = await this.ctx.model.User.create(request);   
     }
     return result;
   }
   
-  async findUserByOpenId(opendId) { 
-    if (!opendId) {
+  async findUserByOpenId(openId) { 
+    if (!openId) {
       return;
     }
-    const result = await this.ctx.model.User.findOne({ open_id: opendId });
+    const result = await this.ctx.model.User.findOne({ open_id: openId });
     return result;
   }
 }
