@@ -10,22 +10,22 @@ class ShopOfficialPartyService extends Service {
   }
 
   async index(params) {
-    const count = await this.ctx.model.ShopOfficialParty.count({});
+    const count = await this.ctx.model.ShopParty.count({});
     // 针对查询优化
-    const parties = await this.ctx.model.ShopOfficialParty.fetch(params.lastPartyId,params.pageSize);
-    return parties;
+    const parties = await this.ctx.model.ShopParty.fetch(params.lastPartyId, params.pageSize);
+    return { count: count, res: parties };
   }
-  async show(opid) {
-    const party = await this.ctx.model.ShopOfficialParty.findOne({ opid });
 
+  async show(opid) {
+    const party = await this.ctx.model.ShopParty.findById(opid);
     return party;
   }
 
-  async update(opid, request) {
+  async update(id, request) {
     if (!request) {
       return;
     }
-    const result = await this.ctx.model.ShopOfficialParty.findOneAndUpdate({ opid }, { $set: request });
+    const result = await this.ctx.model.ShopParty.findOneAndUpdate({ _id: id }, { $set: request });
     return result;
   }
 
@@ -33,15 +33,7 @@ class ShopOfficialPartyService extends Service {
     if (!request) {
       return;
     }
-
-    // 获取自增id
-    const doc = await this.ctx.model.Idg.findOneAndUpdate({ modelname: 'counter' }, { $inc: { opid: 1 } }, { new: true });
-    console.log('+++++++docdoc+++++');
-    console.log(doc);
-    console.log('+++++++docv+++++');
-    request.opid = doc.opid;
-
-    const result = await this.ctx.model.ShopOfficialParty.create(request);
+    const result = await this.ctx.model.ShopParty.create(request);
     return result;
   }
 }

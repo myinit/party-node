@@ -19,7 +19,9 @@ class WxmessageController extends Controller {
 
     //  返回 echostr
   }
-
+/**
+ * 服务消息给用户返消息
+ */
   async create() {
     const { ctx, service } = this;
 
@@ -29,12 +31,13 @@ class WxmessageController extends Controller {
       switch (postdata.Event) {
         case "user_enter_tempsession":
           // postdata.SessionFrom
+          const partyInfo = service.part.getOneByWxFrom(postdata.SessionFrom)
           var sendMessage = {
             "touser": postdata.FromUserName,
             "msgtype": "text",
             "text":
             {
-              "content": "这里是给用户的数据，通过用户的" + postdata.SessionFrom
+              "content": partyInfo
             }
           }
           var wx = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + at

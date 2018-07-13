@@ -1,5 +1,5 @@
 'use strict';
-
+const {Schema} = require('mongoose')
 module.exports = app => {
   // 用户参与官方活动
   // $ug = [
@@ -10,9 +10,9 @@ module.exports = app => {
   // ];
 
   const NewsSchema = new app.mongoose.Schema({
-    utopid: { type: Number, unique: true },
-    uid: { type: Number },
-    gid: { type: String },
+    uid: {type: Schema.Types.ObjectId, ref: 'User'},
+    gid: {type: Schema.Types.ObjectId, ref: 'ShopOfficialParty'},
+    status: { type: String  },
     regdate: { type: Date , default: Date.now }
   })
 

@@ -14,12 +14,11 @@ class MyPartyService extends Service {
     if (!uid) {
       return retData
     }
-    const count = await this.ctx.model.MyParty.count({uid:uid});
+    const count = await this.ctx.model.MyParty.count({uid:uid, status:1});
     // 针对查询优化
     page < 1 && (page = 1)
     var start = (page - 1) * pageSize;
-    
-    const parties = await this.ctx.model.MyParty.find({uid:uid}).skip(start).limit(pageSize).sort('-_id')
+    const parties = await this.ctx.model.MyParty.find({uid:uid, status:1}).skip(start).limit(pageSize).sort('-_id')
     return {count:count, res:parties};
   }
   
@@ -47,6 +46,14 @@ class MyPartyService extends Service {
       return;
     }
     const result = await this.ctx.model.MyParty.create(request);
+    return result;
+  }
+
+  async upMyPartyById(uid, id, request){
+    if (!uid || !id || !request) {
+      return;
+    }
+    const result = await this.ctx.model.MyParty.findOneAndUpdate({_id:id, uid:uid}, { $set: request });
     return result;
   }
 }

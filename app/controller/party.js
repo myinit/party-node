@@ -1,75 +1,49 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const CommonController = require('../core/commonController.js');
 
-class PartyController extends Controller {
+class PartyController extends CommonController {
+  /**
+   * 判断是不是商家活动的url
+   */
+  async isShopUrl() {
+
+  }
+
+  /**
+   * 商家活动的展示列表
+   */
   async index() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg party';
+    const { ctx, service } = this;
+    const uid = await this.getUid()
+    const result = await service.userShopParty.index(uid, ctx.query);
+    return this.success(result)
   }
+
+  /**
+   * 单个的具体信息：可能没用
+   */
   async show() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg partyshow';
+    const { ctx, service } = this;
+    const result = await service.shopOfficailParty.show(ctx.params.id);
+    return this.success(result)
   }
+
+  /**
+   * 创建
+   */
   async create() {
-    const { ctx, service } = this;
-
-    // 校验参数
-    const createRule = {
-      title: 'string',
-      url: 'string',
-      qr_url: 'string',
-      pic_url: 'string',
-      start_date: 'string',
-      end_date: 'string',
-      open_in_xcx: 'boolean',
-    };
-    ctx.validate(createRule);
-
-    // 调用 service 处理
-    const result = await service.shopOfficailParty.create(ctx.request.body);
-
-    // 设置响应体和状态码
-    ctx.body = result;
-    ctx.status = 201;
   }
+
+  /**
+   * 目前不需要
+   */
   async update() {
-    const { ctx, service } = this;
-
-    // 校验参数
-    const createRule = {
-      userId: 'string',
-      content: 'string',
-    };
-    ctx.validate(createRule);
-
-    // 调用 service 处理
-    const id = await service.party.create(ctx.request.body);
-
-    // 设置响应体和状态码
-    ctx.body = {
-      party_id: id,
-    };
-    ctx.status = 201;
   }
+
+  /**删除关注 */
   async destroy() {
-    const { ctx, service } = this;
 
-    // 校验参数
-    const createRule = {
-      userId: 'string',
-      content: 'string',
-    };
-    ctx.validate(createRule);
-
-    // 调用 service 处理
-    const id = await service.party.create(ctx.request.body);
-
-    // 设置响应体和状态码
-    ctx.body = {
-      party_id: id,
-    };
-    ctx.status = 201;
   }
 }
 
