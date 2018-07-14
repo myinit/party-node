@@ -30,18 +30,21 @@ class PartyService extends Service {
     if (!fid) {
       return;
     }
-    const type = fid.substr(0, 2)
-    const id = fid.substr(2)
+    const id_and_type = fid.split(':')
+    const type = id_and_type[0]
+    const id = id_and_type[1]
     let res = {}
     switch (type) {
       case "-1":
         res = this.model.UserToShopOffcial.findById(id);
-        res = this.model.ShopParty.findById(res.gid);
         break;
       default:
         res = this.model.MyParty.findById(id);
     }
-    return res.url;
+    if (res) {
+      return "这是保存的信息： " + res.url + " 如果已经收到信息请发送1";
+    }
+    return "没有找到对应的信息，咋回事呢，回复0再试一试吧"
   }
 
   async upMyPartyById(uid, id, request) {

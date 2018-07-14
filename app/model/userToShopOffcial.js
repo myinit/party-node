@@ -39,6 +39,7 @@ module.exports = app => {
             return false
         }
         return this.find({ _id: ids })
+        .populate('gid')
     },
   }
   return app.mongoose.model('UserToShopOffcial', UserToShopOffcialSchema)
