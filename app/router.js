@@ -8,6 +8,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
 
   router.resources('party', '/party', app.controller.party);
+  router.get('/party/add-shop-party-by-id/:id', app.controller.party.addShopPartyById);
   router.resources('shopPartyAdmin', '/shop-party-admin', app.controller.shopPartyAdmin);
   router.resources('myParty', '/my-party', app.controller.myParty);
   router.resources('user', '/user', app.controller.user);

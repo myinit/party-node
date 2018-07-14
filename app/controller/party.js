@@ -30,19 +30,20 @@ class PartyController extends CommonController {
   }
 
   async addShopPartyById(){
-    // const { ctx, service } = this;
-    // // 校验参数
+    const { ctx, service } = this;
+    // 校验参数
     // const createRule = {
     //   gid: 'string'
     // };
     // ctx.validate(createRule);
     // //发现扫的是商家活动自动换位置
-    // const shopInfo = await service.party.show();
-    // let result = {}
-    // if (shopInfo) {
-    //   result['list_type'] = -1;
-    //   const uid = await this.getUid()
-    //   result['add_res'] = await service.party.handleShopUserParty(uid, shopInfo)
+
+    const shopInfo = await service.shopOfficailParty.show(ctx.params.id);
+    let result = {}
+    if (shopInfo) {
+      result['list_type'] = -1;
+      const uid = await this.getUid()
+      result['add_res'] = await service.party.handleShopUserParty(uid, shopInfo)
     // } else {
     //   result['list_type'] = 0;
     //   const body = await this.handleUserPartData(ctx.request.body)
@@ -50,9 +51,10 @@ class PartyController extends CommonController {
     //     return this.fail('PART_DATA_ERROR')
     //   }
     //   result['add_res'] = await service.myParty.create(body);
-    // }
+      return this.success(result)
+    }
+    return this.fail('ACTIVITY_ERROR')
     // // 调用 service 处理
-    // return this.success(result)
   }
 
   /**
@@ -67,7 +69,6 @@ class PartyController extends CommonController {
     ctx.validate(createRule);
     //发现扫的是商家活动自动换位置
     const shopInfo = await service.party.urlInShop(ctx.request.body.url);
-    console.log(shopInfo)
     let result = {}
     if (shopInfo) {
       result['list_type'] = -1;

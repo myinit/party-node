@@ -16,9 +16,8 @@ class ShopOfficialPartyService extends Service {
     return { count: count, res: parties };
   }
 
-  async show(opid) {
-    const party = await this.ctx.model.ShopParty.findById(opid);
-    return party;
+  async show(id) {
+    return await this.ctx.model.ShopParty.findById(id);
   }
 
   async update(id, request) {
