@@ -3,26 +3,7 @@
 const CommonController = require('../core/commonController.js')
 
 class UserController extends CommonController {
-  async index() {
-    const { ctx } = this
-    ctx.body = 'hi, egg party'
-  }
-
-  async show() {
-    const { ctx, service } = this
-    const userInfo = await service.userLoginInfo.getUserLoginInfo(ctx.query.id, ctx.query.open_id)
-    // const userInfo = await service.user.findUserByOpenId(ctx.params.id);
-    // const userInfo = await service.userLoginInfo.userLogin(ctx.params.id);
-
-    // 设置响应体和状态码
-    // if (userInfo) {
-    ctx.body = {
-      user_info: userInfo
-    }
-    // }
-    ctx.status = 200
-  }
-
+  
   async create() {
     const { ctx, service } = this
     const code = ctx.request.body.code
@@ -40,12 +21,11 @@ class UserController extends CommonController {
     }
     let retData = {}
     if (ctx.request.body.need_login == 'y') {
-      return this.userLogin(userInfo)
+      return this.userLogin(createInfo)
     }
     // 设置响应体和状态码
     return this.success(createInfo)
   }  
-
 }
 
 module.exports = UserController

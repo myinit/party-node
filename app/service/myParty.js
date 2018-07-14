@@ -9,16 +9,14 @@ class MyPartyService extends Service {
     this.root = 'https://cnodejs.org/api/v1';
   }
 
-  async index(uid, page, pageSize = 15) {
+  async index(uid, params) {
     let retData = {count:0, res:[]}
     if (!uid) {
       return retData
     }
     const count = await this.ctx.model.MyParty.count({uid:uid, status:1});
     // 针对查询优化
-    page < 1 && (page = 1)
-    var start = (page - 1) * pageSize;
-    const parties = await this.ctx.model.MyParty.find({uid:uid, status:1}).skip(start).limit(pageSize).sort('-_id')
+    const parties = await this.ctx.model.MyParty.fetch(params.lastPartyId, params.pageSize, {uid:uid, status:1});
     return {count:count, res:parties};
   }
   

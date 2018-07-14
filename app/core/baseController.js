@@ -10,10 +10,6 @@ class BaseController extends Controller {
     this._ = _
   }
 
-  get user() {
-    return this.ctx.session.user;
-  }
-
   success(data, status = 200) {
     // 设置响应体和状态码
     let err = errorInfo['SERVER_REQUEST_OK']

@@ -9,11 +9,21 @@ class PartyService extends Service {
     this.root = 'https://cnodejs.org/api/v1';
   }
 
-  async index(uid, type, page, pageSize = 15) {
-    if (type != -1) {
-      return this.service.MyParty.index(uid, type, page, pageSize)
+  async index(uid, query) {
+    if (!uid && !query) {
+      return;
     }
-    return
+    const pageInfo = {
+      lastPartyId:query.last_party_id || '',
+      pageSize:parseInt(query.page_size) || 15,
+    }
+    switch (query.list_type) {
+      case "-1":
+        return this.service.userShopParty.index(uid, pageInfo)
+        break;
+      default:
+        return this.service.myParty.index(uid, pageInfo)
+    }
   }
 
   async getOneByWxFrom(fid) {
@@ -60,6 +70,23 @@ class PartyService extends Service {
     }
     return old
   }
+
+  async destroy(uid, id, id_type){
+    if (!uid || !id) {
+      return;
+    }
+    let result = {}
+    switch(id_type){
+      case '-1':
+      result = await this.ctx.model.UserToShopOffcial.findOneAndUpdate({_id:id, uid:uid}, { status: 2 });
+      break;
+      default:
+      result = await this.ctx.model.MyParty.findOneAndUpdate({_id:id, uid:uid}, { status: 2 });
+      break;
+    }
+    return result;
+  }
+
 }
 
 module.exports = PartyService;

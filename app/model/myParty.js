@@ -10,7 +10,7 @@ module.exports = app => {
   //   "status"=>"状态1启用2删除",
   //   "regdate"=>"添加时间",
   // ];
-  const MyParty = new app.mongoose.Schema({
+  const MyPartySchema = new app.mongoose.Schema({
     // spid: { type: Number  , unique: true  },
     uid: { type: String  },
     title: { type: String  },
@@ -19,6 +19,32 @@ module.exports = app => {
     status: { type: String  },
     regdate: { type: Date , default: Date.now }
   });
+  MyPartySchema.statics = {
+    async fetch(_id, pageSize, otherWhere = {}) {
+        if (_id) {
+            if(otherWhere){
+              otherWhere['_id'] = { "$lt": _id }
+            }else {
+              otherWhere = {'_id': { "$lt": _id }}
+            }
+            return this.find(otherWhere)
+                .find()
+                .limit(pageSize)
+                .sort({ '_id': -1 })
+        } else {
+            return this.find(otherWhere)
+                .limit(pageSize)
+                .sort({ '_id': -1 })
+        }
 
-  return app.mongoose.model('MyParty', MyParty);
+    },
+    async findInfoByIds(ids = []){
+        if (!ids && ids.length < 1) {
+            return false
+        }
+        return this.find({ _id: ids })
+    },
+}
+
+  return app.mongoose.model('MyParty', MyPartySchema);
 }

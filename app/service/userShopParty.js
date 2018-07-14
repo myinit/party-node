@@ -12,18 +12,15 @@ class userShopParty extends Service {
   }
 
   async index(uid, params) {
-    const count = await this.ctx.model.UserToShopOffcial.count({uid:uid});
+    let retData = {count:0, res:[]}
+    if (!uid) {
+      return retData
+    }
+    const count = await this.ctx.model.UserToShopOffcial.count({uid:uid, status:1});
     // 针对查询优化
-    const pageSize = 15
-    params.page < 1 && (params.page = 1)
-    var start = (params.page - 1) * pageSize;
-    
-    // .find({uid:uid}).skip(start).limit(pageSize).sort('-_id')
-    // return {count:count, res:parties};$where({uid:uid}).
-    const parties = await this.ctx.model.UserToShopOffcial.find({uid:uid}).skip(start).limit(pageSize).sort('-_id')
-    // .fetch(params.lastPartyId,params.pageSize); //TODO::文档在哪里？
-    return  {count:count, res:parties};
-    
+    const parties = await this.ctx.model.UserToShopOffcial.fetch(params.lastPartyId, params.pageSize, {uid:uid, status:1});
+    return {count:count, res:parties};
+
   }
   
   async show(uid, id) {

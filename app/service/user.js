@@ -45,7 +45,10 @@ class UserService extends Service {
     let result =  await this.findUserByOpenId(request.open_id)
     if (!result) {
       result = await this.ctx.model.User.create(request);   
+    }else{
+      await this.ctx.model.User.update({ _id: result._id }, { $set: request})      
     }
+
     return result;
   }
   

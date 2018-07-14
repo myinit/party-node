@@ -3,14 +3,10 @@
 const CommonController = require('../core/commonController.js');
 
 class UserLoginController extends CommonController {
-  async index() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg party';
-  }
-
+  
   async show() {
-    const { ctx, service } = this;
-    const info = await service.userLogin.findOne(ctx.params.id)
+    const { ctx } = this
+    const info = await this.getUserLoginInfo(ctx.params.id)
     if(info){
       return this.success(info)
     }else{
@@ -35,14 +31,14 @@ class UserLoginController extends CommonController {
     if (!openId) {
       return this.fail('USER_CODE_INVALID')
     }
-
+    
     const userInfo = await service.user.findUserByOpenId(openId);
     if (!userInfo) {
       return this.fail('USER_NOT_FIND')
     }
-    
     return this.userLogin(userInfo)
   }
+
 }
 
 module.exports = UserLoginController;

@@ -16,7 +16,7 @@ class PartyController extends CommonController {
   async index() {
     const { ctx, service } = this;
     const uid = await this.getUid()
-    const result = await service.userShopParty.index(uid, ctx.query);
+    const result = await service.party.index(uid, ctx.query);
     return this.success(result)
   }
 
@@ -29,10 +29,60 @@ class PartyController extends CommonController {
     return this.success(result)
   }
 
+  async addShopPartyById(){
+    // const { ctx, service } = this;
+    // // 校验参数
+    // const createRule = {
+    //   gid: 'string'
+    // };
+    // ctx.validate(createRule);
+    // //发现扫的是商家活动自动换位置
+    // const shopInfo = await service.party.show();
+    // let result = {}
+    // if (shopInfo) {
+    //   result['list_type'] = -1;
+    //   const uid = await this.getUid()
+    //   result['add_res'] = await service.party.handleShopUserParty(uid, shopInfo)
+    // } else {
+    //   result['list_type'] = 0;
+    //   const body = await this.handleUserPartData(ctx.request.body)
+    //   if (!body) {
+    //     return this.fail('PART_DATA_ERROR')
+    //   }
+    //   result['add_res'] = await service.myParty.create(body);
+    // }
+    // // 调用 service 处理
+    // return this.success(result)
+  }
+
   /**
    * 创建
    */
   async create() {
+    const { ctx, service } = this;
+    // 校验参数
+    const createRule = {
+      url: 'string'
+    };
+    ctx.validate(createRule);
+    //发现扫的是商家活动自动换位置
+    const shopInfo = await service.party.urlInShop(ctx.request.body.url);
+    console.log(shopInfo)
+    let result = {}
+    if (shopInfo) {
+      result['list_type'] = -1;
+      const uid = await this.getUid()
+      result['add_res'] = await service.party.handleShopUserParty(uid, shopInfo)
+    } else {
+      result['list_type'] = 0;
+      const body = await this.handleUserPartData(ctx.request.body)
+      if (!body) {
+        return this.fail('PART_DATA_ERROR')
+      }
+      result['add_res'] = await service.myParty.create(body);
+    }
+    // 调用 service 处理
+    return this.success(result)
   }
 
   /**
@@ -43,6 +93,18 @@ class PartyController extends CommonController {
 
   /**删除关注 */
   async destroy() {
+    const { ctx, service } = this;
+
+    const uid = await this.getUid()
+    const id = ctx.params.id
+    const id_type = ctx.query.id_type
+
+    // 调用 service 处理
+    const ok = await service.party.destroy(uid, id, id_type);
+    if (ok) {
+      return this.success(ok)
+    }
+    return this.fail('PART_DATA_ERROR')
 
   }
 }

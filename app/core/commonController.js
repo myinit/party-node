@@ -5,6 +5,12 @@ class CommonController extends BaseController {
     constructor(ctx) {
         super(ctx);
     }
+
+    async getUserLoginInfo(loginToken){
+        const userStrInfo = await this.app.redis.get(loginToken); 
+        return JSON.parse(userStrInfo)
+    }
+
     async userLogin(userInfo) {
         if (!userInfo || !userInfo.open_id) {
             return this.fail('USER_LOGIN_FAIL')
