@@ -28,26 +28,26 @@ class WxmessageController extends Controller {
     const postdata = ctx.request.body;
     const at = await ctx.service.wx.getAccessToken()
     const wx = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + at
+    let sendMessage = {
+      "touser": postdata.FromUserName,
+      "msgtype": "text",
+      "text":
+      {
+        "content": "谢谢你的回执，我们会继续努力的。"
+      }
+    }
     if (postdata.MsgType == "event") {
       switch (postdata.Event) {
         case "user_enter_tempsession":
           // postdata.SessionFrom
-          const partyInfo = service.part.getOneByWxFrom(postdata.SessionFrom)
-          var sendMessage = {
-            "touser": postdata.FromUserName,
-            "msgtype": "text",
-            "text":
-            {
-              "content": partyInfo
-            }
-          }
+          const partyInfo = await ctx.service.party.getOneByWxFrom(postdata.SessionFrom)
+          sendMessage.text.content = partyInfo
           break;
 
         default:
           break;
       }
     }
-
     // 调用 service 处理
     console.log("我请求了：" + wx)
 

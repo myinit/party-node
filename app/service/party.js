@@ -36,12 +36,13 @@ class PartyService extends Service {
     let res = {}
     switch (type) {
       case "-1":
-        res = this.model.UserToShopOffcial.findById(id);
+        res = await this.model.UserToShopOffcial.findById(id);
         break;
       default:
-        res = this.model.MyParty.findById(id);
+        res = await this.model.MyParty.findById(id);
     }
     if (res) {
+      console.log(res)
       return "这是保存的信息： " + res.url + " 如果已经收到信息请发送1";
     }
     return "没有找到对应的信息，咋回事呢，回复0再试一试吧"
