@@ -62,10 +62,11 @@ class WxService extends Service {
     
     async getAccessToken() {
         const {app} = this
-        this.wxAccessToken = await app.redis.get('wx_access_token');
+        let wxAccessToken = await app.redis.get('wx_access_token');
         
         const now = new Date().getTime()
-        if (this.wxAccessToken.expiresIn > now && this.wxAccessToken.accessToken != "") {
+        if (wxAccessToken && wxAccessToken.expiresIn > now && wxAccessToken.accessToken != "") {
+            this.wxAccessToken = wxAccessToken
             return this.wxAccessToken.accessToken
         }
         const wxAT = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + this.appconf.appid + "&secret=" + this.appconf.secret
