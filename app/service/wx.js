@@ -63,7 +63,7 @@ class WxService extends Service {
     async getAccessToken() {
         const {app} = this
         let wxAccessToken = await app.redis.get('wx_access_token');
-        
+        wxAccessToken = JSON.parse(wxAccessToken)
         const now = new Date().getTime()
         if (wxAccessToken && wxAccessToken.expiresIn > now && wxAccessToken.accessToken != "") {
             this.wxAccessToken = wxAccessToken
@@ -80,7 +80,7 @@ class WxService extends Service {
 
             this.wxAccessToken.accessToken = res.data.access_token
             this.wxAccessToken.expiresIn = now + res.data.expires_in * 1000
-            app.redis.set('wx_access_token', this.wxAccessToken)
+            app.redis.set('wx_access_token', JSON.stringify(this.wxAccessToken))
             return this.wxAccessToken.accessToken
         })
     }
