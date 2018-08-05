@@ -36,10 +36,10 @@ class PartyService extends Service {
     let res = {}
     switch (type) {
       case "-1":
-        res = await this.model.UserToShopOffcial.findById(id);
+        res = await this.ctx.model.UserToShopOffcial.findById(id);
         break;
       default:
-        res = await this.model.MyParty.findById(id);
+        res = await this.ctx.model.MyParty.findById(id);
     }
     if (res) {
       console.log(res)
